@@ -10,21 +10,39 @@
 </head>
 
 <body>
+    <div class="display-off"  id="block-1">
     <header>
         <div class="title-div"></div>
-        <h1 class="title">Lag Compensator</h1>
-        <h4>AIM:-To Design and Determination of Transfer function and Frequency response of lag network</h4>
-
-        <h4>Apparatus Required</h4>
-        <ul>
-            <li>Resistors-10kΩ </li>
-            <li>Resistors-20kΩ</li>
-            <li>Capacitor- 0.1μF</li>
-            <li>Regulated Power Supply</li>
-            <li>Function Generator</li>
-        </ul>
-        <button>Start the Experiment</button>
+        <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
     </header>
+        <main class=" main flex-col add-p10">
+        <h4 class="remove-mg add-p10"><span class="header">AIM:</span> To Design and Determination of Transfer function and Frequency response of lag network</h4>
+
+        <h4 class="header add-p10 remove-mg">APPARATUS REQUIRED:</h4>
+        <ul class="list-style remove-mg add-p10 ">
+            <li class="list-items">Resistors-10kΩ </li>
+            <li class="list-items">Resistors-20kΩ</li>
+            <li class="list-items">Capacitor- 0.1μF</li>
+            <li class="list-items">Regulated Power Supply</li>
+            <li class="list-items">Function Generator</li>
+        </ul>
+        <button class="button text-style-center ">Start the Experiment</button>
+     </main>
+    </div>
+    <div id="block-2">
+        <div class="flex-col">
+            <h4 class="title text-style-center text-style-size add-mg10  add-p10">
+                        QUIZ TIME
+            </h4>
+            <div class =" continer  flex-col add-p10" id="question-container">
+                  <button class="button text-style-center" type="button">Start Quiz</button>
+                  <h5 class="text-style-center">Test Your Practical Knowledge</h5>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
 </body>
 
 </html>

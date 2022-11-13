@@ -1,0 +1,64 @@
+.text-style-center{
+    text-align: center;
+}
+.text-style-size{
+    font-size: 40px;
+}
+
+.title{
+    background-color: blueviolet;
+    color: white;
+    padding: 5px;
+}
+.button{
+    border: none;
+    background-color: blueviolet;
+    color: white;
+    font-size: 20px;
+    padding: 10px 40px;
+    border-radius: 8px;
+    width: fit-content;
+    align-self: center;
+}
+.main{
+    border:2px solid blueviolet ;
+    border-radius: 10px;
+
+}
+h4{
+    font-weight: bolder;
+
+}
+.flex-col{
+    display:flex;
+    flex-direction: column;
+}
+.header{
+    font-weight: 600;
+    font-size: 25px;
+}
+.remove-mg{
+    margin: 0;
+}
+.remove-pad{
+    padding:0 ;
+}
+.add-p10{
+ padding: 10px;
+}
+.list-style{
+ list-style-type: none;
+ padding: 2px 60px;
+}
+.list-items{
+   padding: 1px 0px;
+}
+.display-off{
+    display: none;
+}
+.add-mg10{
+    margin: 10px;
+}
+.continer{
+    
+}
