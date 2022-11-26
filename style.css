@@ -1,3 +1,9 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 .text-style-center{
     text-align: center;
 }
@@ -59,6 +65,70 @@ h4{
 .add-mg10{
     margin: 10px;
 }
-.continer{
+.container{
+    border: 1px solid #000;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+.grid-layout{
+   display: grid;
+   grid-template-columns: 100px 800px;
+   grid-template-rows: 10% 90%;
+   grid-template-areas: 
+   'element header'
+   'element container '
+   ;
+   gap: 20px;
+   justify-content: center;
+}
+.draggable-elements{
+  grid-area: element;
+  align-items: center;
+  border: 1px solid #000;
+  display: flex;
+  justify-content:space-evenly;
+  align-items:center;
+  flex-direction: column;
+}
+.droppable-elements{
+  grid-area: container;
+  height: 60vh;
+  padding: 20px;
+  border: 1px solid #000;
+  position: relative;
+  
+}
+.layout{
+    width:100% ;
+    height: 100%;
+}
+#block-3{
+    padding: 10px;
     
 }
+.circuit-header{
+   grid-area: header;
+}
+.droppable{
+    border: 2px solid #000; 
+    width: 80px;
+    height: 80px;
+    background-color: white;
+}
+.result{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0px 5px;
+}
+.result-container{
+    border: 1px solid #000;
+    padding: 1px 10px;
+}
+

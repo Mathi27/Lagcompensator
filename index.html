@@ -29,7 +29,7 @@
         <button class="button text-style-center ">Start the Experiment</button>
      </main>
     </div>
-    <div id="block-2">
+    <div id="block-2" style="display:none ;">
         <div class="flex-col">
             <h4 class="title text-style-center text-style-size add-mg10  add-p10">
                         QUIZ TIME
@@ -41,6 +41,32 @@
 
         </div>
     </div>
+    <div>
+    <div class="" id="block-3" >
+      
+    <div class="grid-layout" id="circuit-page">
+     <div class="circuit-header">Drag the Apparatus and place it on the canvas</div>
+     <div class="draggable-elements">
+        <img src="./assets/Capacitor (40 x 40).png" alt="" class="draggable" id="cap" draggable="true">
+        <img src="./assets/Function-Gen (40 x 40).png" alt="" class="draggable" id="func-g" draggable="true">
+        <img src="./assets/Resistor 1 (40 x 40).png" alt="" class="draggable" id="res1" draggable="true">
+        <img src="./assets/Resistor 2 (40 x 40).png" alt="" class="draggable" id="res2" draggable="true">
+        <img src="./assets/RPS  (40 x 40).png" alt="" class="draggable" id="rsp" draggable="true">
+     </div>
+     <div class="droppable-elements">
+     <img src="./assets/wire-layout.png" class="layout">
+     <div class="droppable" data-draggable-id="cap" style="position:absolute; bottom:100px;right:210px;"></div>
+     <div class="droppable" data-draggable-id="func-g" style="position:absolute;top:265px;left:25px;"></div>
+     <div class="droppable" data-draggable-id="res1" style="position:absolute;top:15px;left:250px;"></div>
+     <div class="droppable" data-draggable-id="res2" style="position:absolute; top:100px;right:210px;"></div> 
+     <div class="droppable" data-draggable-id="rsp" style="position:absolute;top:120px;left:25px;"></div>
+     <div class="result container" style="position:absolute ;right: 15px;width:130px;height:120px;bottom:175px;">
+        <div class="result-container" id="output-a">a :</div>
+        <div class="result-container" id="output-b">b :</div>
+        <div class="result-container" id="output-v">Vo :</div>
+    </div> 
+    </div>
+
 
     <script src="./main.js"></script>
 </body>

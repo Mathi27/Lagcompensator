@@ -24,6 +24,8 @@ const quize_answer = [0,1,2,3,3]
 const user_answer = new Array(5)
 const invalid_answer = []
 var current_question_index = 0 
+
+// the function starts the quize
 function startQuiz(event){
     console.log(event)
     let parent  = event.target.parentElement
@@ -50,6 +52,8 @@ function startQuiz(event){
     
     
 }
+// this function create a question dom templete based on the index value 
+
 function createQuestion(index){
     let containerElement = document.createElement('div')
     let questionElement   = document.createElement('h5')
@@ -72,6 +76,8 @@ function createQuestion(index){
     containerElement.appendChild(optionElement)
     return containerElement
 }
+
+// to render the next question
 function nextQuestion(event) {
   document.getElementsByName('option').forEach((ele,index)=>{
         if(ele.checked) user_answer[current_question_index] = index 
@@ -84,6 +90,9 @@ function nextQuestion(event) {
   questionConatiner.childNodes.forEach(ele=> questionConatiner.removeChild(ele))
   questionConatiner.appendChild(createQuestion(current_question_index));
 }
+//to render the previous question
+
+
 function prevsQuestion(){
     
     let questionConatiner = document.getElementById('questionContainer');
@@ -95,6 +104,7 @@ function prevsQuestion(){
     questionConatiner.childNodes.forEach(ele=> questionConatiner.removeChild(ele))
     questionConatiner.appendChild(createQuestion(current_question_index));
 }
+// to reder the result of the quize
 function renderResult(mainContainer){
     let parentContainer  = mainContainer.parentElement;
     let container  = document.createElement('div');
@@ -119,19 +129,14 @@ function renderResult(mainContainer){
     
 
 }
+// to calculate the result of the quize
 function calculateResult(){
     let score = 0;
     invalid_answer.splice(0,invalid_answer.length)
     quize_answer.forEach((ele,ind)=>{if(ele == user_answer[ind]){score++}else{invalid_answer.push(ind)}})
     return score
 }
-function renderCircute(event){
-let mainContainer = event.target.parentElement.parentElement.parentElement
-mainContainer.removeChild(event.target.parentElement.parentElement)
-let circuitContainer = document.createElement('div')
-circuitContainer.innerHTML = `This is circuit page`
-mainContainer.appendChild(circuitContainer)    
-}
+// to re-render the incurrect question 
 function reRenderQuestion(event){
 current_question_index = 0    
 let mainContainer = event.target.parentElement.parentElement
@@ -156,6 +161,8 @@ parent.appendChild(nextButton)
 parent.appendChild(prevsButton)
 mainContainer.appendChild(parent)
 }
+
+// to go to next re-reder question 
 function rnextQuestion(event) {
     document.getElementsByName('option').forEach((ele,index)=>{
           if(ele.checked) user_answer[invalid_answer[current_question_index]]= index 
@@ -168,6 +175,7 @@ function rnextQuestion(event) {
     questionConatiner.childNodes.forEach(ele=> questionConatiner.removeChild(ele))
     questionConatiner.appendChild(createQuestion(invalid_answer[current_question_index]));
   }
+  //to go to previous re-render question
   function rprevsQuestion(){
       
       let questionConatiner = document.getElementById('questionContainer');
@@ -180,3 +188,67 @@ function rnextQuestion(event) {
       questionConatiner.childNodes.forEach(ele=> questionConatiner.removeChild(ele))
       questionConatiner.appendChild(createQuestion(invalid_answer[current_question_index]));
   }
+// this is circute rendering session 
+
+//   function renderCircute(event){
+//     let mainContainer = event.target.parentElement.parentElement.parentElement
+//     mainContainer.style.display = 'none';
+       
+//     let elementContainer  = document.getElementById('elementContainer')
+//     //add all he element inside the element container 
+//     for(let i=0;i<6;i++){ 
+//     elementContainer.appendChild(addCircuiteElement("filepath",i,100,100))
+//      }
+    
+//     }
+
+//     function addCircuiteElement(imagepath,id,width,height){
+//         let element = document.createElement('img')
+//         element.classList.add('container')
+//         element.src = imagepath 
+//         element.width = width
+//         element.height = height
+//         element.id = id
+//         element.alt = `component - ${id}`
+//         return element 
+//     }
+   
+// selecting all the draggable event 
+const draggableElement = document.querySelectorAll(".draggable");
+const droppableElement = document.querySelectorAll(".droppable");
+draggableElement.forEach(ele=>{
+    ele.addEventListener("dragstart",dragStart);
+    // ele.addEventListener("drag",drag);
+    // ele.addEventListener("dragend",dragEnd);
+})
+droppableElement.forEach(ele=>{
+    ele.addEventListener("dragenter",dragEnter);
+    ele.addEventListener("dragover",dragOver);
+    // ele.addEventListener("dragleave",dragLeave);
+    ele.addEventListener("drop",drop);
+
+})
+
+//drag and drop functionality 
+function dragStart(event){
+   event.dataTransfer.setData("id",event.target.id)
+}
+function dragOver(event){
+    event.preventDefault();
+}
+function drop(event){
+    event.preventDefault();
+    const draggableElementData = event.dataTransfer.getData('id');
+    const droppableElementData = event.target.getAttribute("data-draggable-id");
+    console.log(draggableElementData)
+    if(draggableElementData == droppableElementData){
+    const element = document.getElementById(draggableElementData) ;
+    element.style.width = "100%"
+    element.style.height = "100%"
+    event.target.appendChild(element);
+
+    }
+}
+function dragEnter(event){
+     
+}
