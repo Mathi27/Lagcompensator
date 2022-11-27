@@ -10,6 +10,10 @@ T.K. Mathi Yuvarajan
      
 
 #### Software Version 1.0
+#### Technology Stack: 
+Vanilla Javascript , HTML5 , CSS
+#### Open Source Library Used:
+Chart.JS
 
 
 
