@@ -27,6 +27,12 @@ const invalid_answer = []
 var current_question_index = 0
 const circuitObject = {}
 const records = new Map();
+
+//to move to quize page
+function startTheQuize(){
+    document.getElementById("block-1").classList.add("display-off")
+    document.getElementById("block-2").classList.remove("display-off");
+}  
 // the function starts the quize
 function startQuiz(event) {
     console.log(event)
@@ -108,7 +114,9 @@ function prevsQuestion() {
 }
 // to reder the result of the quize
 function renderResult(mainContainer) {
+   
     let parentContainer = mainContainer.parentElement;
+    console.log(parentContainer);
     let container = document.createElement('div');
     parentContainer.removeChild(mainContainer)
 
@@ -119,7 +127,7 @@ function renderResult(mainContainer) {
     redirectButton.type = 'button'
     if (result == quize_question.length) {
         redirectButton.value = 'Next'
-        redirectButton.onclick = renderCircute
+        redirectButton.onclick = renderCircuit
     }
     else {
         redirectButton.value = 'Try Again'
@@ -190,6 +198,14 @@ function rprevsQuestion() {
     questionConatiner.childNodes.forEach(ele => questionConatiner.removeChild(ele))
     questionConatiner.appendChild(createQuestion(invalid_answer[current_question_index]));
 }
+
+
+//this is no render the circuit
+function renderCircuit(){
+ document.getElementById("block-2").classList.add("display-off");
+ document.getElementById("block-3").classList.remove("display-off");
+}
+
 // this is circute rendering session 
 
 //   function renderCircute(event){
@@ -364,7 +380,13 @@ function getRecordValue() {
 }
 //to go to privious circuit page
 function gotoprevious() {
-    document.getElementById("block-4").style.display = "none";
-    document.getElementById("block-3").style.display = "block";
+    document.getElementById("block-4").classList.add("display-off");
+    document.getElementById("block-3").classList.remove("display-off");
 
+}
+// to download the result as pdf
+function downloadResult(){
+    alert("the expriment completed successfully and the download will begin soon...")
+    const element   = document.getElementById('block-4');
+    html2pdf().from(element).save()
 }

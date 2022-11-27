@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="./style.css">
     <title>Lag Compensator Simulation</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 </head>
 
 <body>
-    <div class="display-off" id="block-1">
+    <div  id="block-1">
         <header>
             <div class="title-div"></div>
             <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
@@ -28,10 +29,10 @@
                 <li class="list-items">Regulated Power Supply</li>
                 <li class="list-items">Function Generator</li>
             </ul>
-            <button class="button text-style-center ">Start the Experiment</button>
+            <button class="button text-style-center " onclick ="startTheQuize()">Start the Experiment</button>
         </main>
     </div>
-    <div id="block-2" style="display:none ;">
+    <div id="block-2" class="display-off">
         <div class="flex-col">
             <h4 class="title text-style-center text-style-size add-mg10  add-p10">
                 QUIZ TIME
@@ -43,7 +44,7 @@
 
         </div>
     </div>
-    <div class="" id="block-3" style="display: none;">
+    <div  id="block-3" class="display-off">
 
             <div class="grid-layout" id="circuit-page" >
                 <div class="circuit-header" id="header1">Drag the Apparatus and place it on the canvas</div>
@@ -100,8 +101,8 @@
                 </div>
             </div>
     </div>
-    <div class="" id="block-4" >
-        <button onclick="gotoprevious()">previous</button>
+    <div class="display-off" id="block-4" >
+      
         <div class="result-grid">
             <div class="table-conatiner">
                 <table>
@@ -130,6 +131,8 @@
             </div>
             <canvas  class="graph1" id="graph1" ></canvas>
             <canvas  class="graph2" id="graph2"></canvas>
+            <button onclick="gotoprevious()">previous</button>
+            <button onclick="downloadResult()">Download the result</button>
         </div>
     </div>
    
