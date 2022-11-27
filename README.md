@@ -5,8 +5,9 @@ A lag compensator is a circuit that is designed to generate a steady-state sinus
 The instructional strategy identified is Expository as the students learn the concepts of  lag network, its operating principle and the performance characteristics. So, the virtual laboratory experiment will help the students to understand practically the Characteristics of  Lag network. The formative assessment (quiz) given before the test will also help the students to evaluate themselves. Later the experiment will be done by the students based on the instructions. Once the experiment is completed by the student, quiz will be given to assess themselves with the learnt concepts.
 ## Developers 
 
+V.P. AswinKumar    
 T.K. Mathi Yuvarajan   
-V.P. AswinKumar         
+     
 
 #### Software Version 1.0
 
