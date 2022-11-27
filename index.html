@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Lag Compensator Simulation</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -42,7 +43,7 @@
 
         </div>
     </div>
-    <div class="" id="block-3" >
+    <div class="" id="block-3" style="display: none;">
 
             <div class="grid-layout" id="circuit-page" >
                 <div class="circuit-header" id="header1">Drag the Apparatus and place it on the canvas</div>
@@ -99,7 +100,7 @@
                 </div>
             </div>
     </div>
-    <div class="" id="block-4" style="display: none;">
+    <div class="" id="block-4" >
         <button onclick="gotoprevious()">previous</button>
         <div class="result-grid">
             <div class="table-conatiner">
@@ -119,20 +120,20 @@
                 </table>
             </div>
             <div class="table-details">Table table-details
-                <div class="container input-element">
-                    <span>V<sub>in</sub>  Input Voltage</span>
-                    <span>a,b  Lineroutput value</span>
-                    <span>F  Frequency</span>
-                    <span>V<sub>o</sub>  Output Voltage</span>
+                <div>
+                    <span>V<sub>in</sub></span><span>Input Voltage</span>
+                    <span>a,b  </span><span> value</span>
+                    <span>F </span>
+                    <span>Frequency</span>
+                    <span>V<sub>o</sub></span><span> Output Voltage</span>
                 </div>
             </div>
-            <div class="graph1" id="graph1">graph-1</div>
-            <div class="graph2" id="graph2">graph-2</div>
+            <canvas  class="graph1" id="graph1" ></canvas>
+            <canvas  class="graph2" id="graph2"></canvas>
         </div>
     </div>
-    
-
-
+   
+   
     <script src="./main.js"></script>
 </body>
 
