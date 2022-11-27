@@ -1,24 +1,26 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
-.text-style-center{
+.text-style-center {
     text-align: center;
 }
-.text-style-size{
+
+.text-style-size {
     font-size: 40px;
 }
 
-.title{
-    background-color: blueviolet;
+.title {
+    background-color: rgb(0, 0, 0);
     color: white;
     padding: 5px;
 }
-.button{
+
+.button {
     border: none;
-    background-color: blueviolet;
+    background-color: rgb(21, 47, 194);
     color: white;
     font-size: 20px;
     padding: 10px 40px;
@@ -26,158 +28,192 @@
     width: fit-content;
     align-self: center;
 }
-.main{
-    border:2px solid blueviolet ;
+
+.main {
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 10px;
 
 }
-h4{
+
+h4 {
     font-weight: bolder;
 
 }
-.flex-col{
-    display:flex;
+
+.flex-col {
+    display: flex;
     flex-direction: column;
 }
-.header{
+
+.header {
     font-weight: 600;
     font-size: 25px;
 }
-.remove-mg{
+
+.remove-mg {
     margin: 0;
 }
-.remove-pad{
-    padding:0 ;
+
+.remove-pad {
+    padding: 0;
 }
-.add-p10{
- padding: 10px;
+
+.add-p10 {
+    padding: 10px;
 }
-.list-style{
- list-style-type: none;
- padding: 2px 60px;
+
+.list-style {
+    list-style-type: none;
+    padding: 2px 60px;
 }
-.list-items{
-   padding: 1px 0px;
+
+.list-items {
+    padding: 1px 0px;
 }
-.display-off{
+
+.display-off {
     display: none;
 }
-.add-mg10{
+
+.add-mg10 {
     margin: 10px;
 }
-.container{
+
+.container {
     border: 1px solid #000;
 }
-.flex-row{
+
+.flex-row {
     display: flex;
     flex-direction: row;
 }
-.flex-col{
+
+.flex-col {
     display: flex;
     flex-direction: column;
 }
-.grid-layout{
-   display: grid;
-   grid-template-columns: 100px 800px;
-   grid-template-rows: 1fr 5fr 0.3fr;
-   grid-template-areas: 
-   'element header'
-   'element container'
-   'element buttons'
-   ;
-   gap: 20px;
-   justify-content: center;
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 100px 800px;
+    grid-template-rows: 1fr 5fr 0.3fr;
+    grid-template-areas:
+        'element header'
+        'element container'
+        'element buttons'
+    ;
+    gap: 20px;
+    justify-content: center;
 }
-.draggable-elements{
-  grid-area: element;
-  align-items: center;
-  border: 1px solid #000;
-  display: flex;
-  justify-content:space-evenly;
-  align-items:center;
-  flex-direction: column;
+
+.draggable-elements {
+    grid-area: element;
+    align-items: center;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
 }
-.droppable-elements{
-  grid-area: container;
-  height: 60vh;
-  padding: 20px;
-  border: 1px solid #000;
-  position: relative;
-  
+
+.droppable-elements {
+    grid-area: container;
+    height: 60vh;
+    padding: 20px;
+    border: 1px solid #000;
+    position: relative;
+
 }
-.layout{
-    width:100% ;
+
+.layout {
+    width: 100%;
     height: 100%;
 }
-#block-3{
+
+#block-3 {
     padding: 10px;
-    
+
 }
-.circuit-header{
-   grid-area: header;
-   
+
+.circuit-header {
+    grid-area: header;
+
 }
-.droppable{
-    border: 2px solid #000; 
+
+.droppable {
+    border: 2px solid #000;
     width: 80px;
     height: 80px;
     background-color: white;
 }
-.result{
+
+.result {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     padding: 0px 5px;
 }
-.result-container{
+
+.result-container {
     border: 1px solid #000;
     padding: 1px 10px;
 }
-.button-holder{
+
+.button-holder {
     grid-area: buttons;
     display: flex;
     justify-content: center;
 }
-.input-elements{
-    display:grid;
+
+.input-elements {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     justify-content: center;
 }
-.input-element{
+
+.input-element {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-#voltage{
+
+#voltage {
     width: 80px;
     height: 40px;
 }
-#frequency{
+
+#frequency {
     width: 200px;
 }
-.input-filelds span{
+
+.input-filelds span {
     padding-bottom: 10px;
 }
-.result-grid{
+
+.result-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap:20px;
+    gap: 20px;
 
 }
-.graph1,.graph2{
-  width:600px;
-  height: 400px;
-  border: 1px solid #000;
+
+.graph1,
+.graph2 {
+    width: 600px;
+    height: 400px;
+    border: 1px solid #000;
 }
-.table-details{
+
+.table-details {
     width: max-content;
     padding: 10px;
 }
-.table-details div{
-  padding:5px 2px;
-  display:grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 10px;
-  border: 1px solid #000;
+
+.table-details div {
+    padding: 5px 2px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    border: 1px solid #000;
 }

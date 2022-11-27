@@ -1,27 +1,27 @@
 
 const quize_question = [
     {
-        question: "What is capacitor 1?",
-        options: ["a device", "a circuit breaker", "simiconductor", "none of the above"]
+        question: "The capacitor in lag compensator is connected in ____  with resistor ?",
+        options: ["Parallel", "Perpendicular", "Open", "Series"]
     },
     {
-        question: "What is capacitor 2?",
-        options: ["a device", "a circuit breaker", "simiconductor", "none of the above"]
+        question: "The Phase Lag provided by the lag compensator at Low Frequency lowers the _____?",
+        options: ["Magnitude", "Current", "Harmonics", "Steady State Error"]
     },
     {
-        question: "What is capacito r 3?",
-        options: ["a device", "a circuit breaker", "simiconductor", "none of the above"]
+        question: "The Poles and Zeros in the Graph ______?",
+        options: ["Parallel Axis", "Positive Real Axis", "Zero Real Axis", "Negative Real Axis"]
     },
     {
-        question: "What is capacitor 4?",
-        options: ["a device", "a circuit breaker", "simiconductor", "none of the above"]
+        question: "In Lag Compensator the phase is always?",
+        options: ["Negative", "Positive", "Zero", "Infinity"]
     },
     {
-        question: "What is capacitor? 5",
-        options: ["a device", "a circuit breaker", "simiconductor", "none of the above"]
+        question: "Lag Compensator is always _____ an Unstable System?",
+        options: ["Increases", "Settling", "Stabilizes", "Decreases"]
     }
 ]
-const quize_answer = [0, 1, 2, 3, 3]
+const quize_answer = [3, 3, 3, 0, 2]
 const user_answer = new Array(5)
 const invalid_answer = []
 var current_question_index = 0
@@ -29,10 +29,10 @@ const circuitObject = {}
 const records = new Map();
 
 //to move to quize page
-function startTheQuize(){
+function startTheQuize() {
     document.getElementById("block-1").classList.add("display-off")
     document.getElementById("block-2").classList.remove("display-off");
-}  
+}
 // the function starts the quize
 function startQuiz(event) {
     console.log(event)
@@ -114,7 +114,7 @@ function prevsQuestion() {
 }
 // to reder the result of the quize
 function renderResult(mainContainer) {
-   
+
     let parentContainer = mainContainer.parentElement;
     console.log(parentContainer);
     let container = document.createElement('div');
@@ -201,9 +201,9 @@ function rprevsQuestion() {
 
 
 //this is no render the circuit
-function renderCircuit(){
- document.getElementById("block-2").classList.add("display-off");
- document.getElementById("block-3").classList.remove("display-off");
+function renderCircuit() {
+    document.getElementById("block-2").classList.add("display-off");
+    document.getElementById("block-3").classList.remove("display-off");
 }
 
 // this is circute rendering session 
@@ -342,7 +342,7 @@ function getRecordValue() {
 
     }
 
-    console.log(dataset1,dataset2,label)
+    console.log(dataset1, dataset2, label)
     new Chart(graph1, {
         type: "line",
         data: {
@@ -385,8 +385,8 @@ function gotoprevious() {
 
 }
 // to download the result as pdf
-function downloadResult(){
+function downloadResult() {
     alert("the expriment completed successfully and the download will begin soon...")
-    const element   = document.getElementById('block-4');
+    const element = document.getElementById('block-4');
     html2pdf().from(element).save()
 }
