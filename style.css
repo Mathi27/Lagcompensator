@@ -79,10 +79,11 @@ h4{
 .grid-layout{
    display: grid;
    grid-template-columns: 100px 800px;
-   grid-template-rows: 10% 90%;
+   grid-template-rows: 1fr 5fr 0.3fr;
    grid-template-areas: 
    'element header'
-   'element container '
+   'element container'
+   'element buttons'
    ;
    gap: 20px;
    justify-content: center;
@@ -114,6 +115,7 @@ h4{
 }
 .circuit-header{
    grid-area: header;
+   
 }
 .droppable{
     border: 2px solid #000; 
@@ -131,4 +133,34 @@ h4{
     border: 1px solid #000;
     padding: 1px 10px;
 }
+.button-holder{
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+}
+.input-elements{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    justify-content: center;
+}
+.input-element{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#voltage{
+    width: 80px;
+    height: 40px;
+}
+#frequency{
+    width: 200px;
+}
+.input-filelds span{
+    padding-bottom: 10px;
+}
+.result-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
+}

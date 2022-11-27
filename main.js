@@ -24,7 +24,8 @@ const quize_answer = [0,1,2,3,3]
 const user_answer = new Array(5)
 const invalid_answer = []
 var current_question_index = 0 
-
+const circuitObject = {}
+const records = new Map();
 // the function starts the quize
 function startQuiz(event){
     console.log(event)
@@ -236,19 +237,84 @@ function dragStart(event){
 function dragOver(event){
     event.preventDefault();
 }
+function dragEnter(event){}
 function drop(event){
     event.preventDefault();
     const draggableElementData = event.dataTransfer.getData('id');
     const droppableElementData = event.target.getAttribute("data-draggable-id");
-    console.log(draggableElementData)
     if(draggableElementData == droppableElementData){
     const element = document.getElementById(draggableElementData) ;
     element.style.width = "100%"
     element.style.height = "100%"
     event.target.appendChild(element);
-
+    circuitObject[droppableElementData] = true
+    
+    }
+    
+    if(Object.keys(circuitObject).length == 5) {
+        const circuitConnectionbtn = document.getElementById("checkConnection")
+        circuitConnectionbtn.disabled = false
+        
     }
 }
-function dragEnter(event){
-     
+
+//check connectin function 
+function checkConnection(){
+    document.getElementById("header1").style.display = "none";
+    const inputField = document.getElementById("header2")
+    inputField.classList.add("circuit-header")
+    inputField.style.display = "block";
+    const draggableContainer  = document.getElementById("draggable-elements")
+    draggableContainer.style.display = "none";
+    document.getElementById("check-connection").style.display = "none";
+    document.getElementById("record-result").style.display = "block";
+}
+//function to record the result 
+function frequencyOnChange(){
+    const voltage = Number(document.getElementById("voltage").value);
+    const frequency  =Number(document.getElementById("frequency").value);
+    //base case 
+    const value = generateResult(frequency)
+    document.getElementById("output-a").innerHTML= `a: ${value.a}`
+    document.getElementById("output-b").innerHTML=`b: ${value.b}`
+    document.getElementById("output-v").innerHTML= `c: ${value.v}`
+}
+function recordTheResult(){
+const voltage = Number(document.getElementById("voltage").value);
+const frequency  =Number(document.getElementById("frequency").value);
+//base case 
+if(records.has(frequency)) return alert("the frequency is already recorded") 
+const value = generateResult(frequency)
+records.set(frequency,value)
+if(records.size == 10) {
+    document.getElementById("result-btn").disabled = false
+    return
+    }
+}
+//function to generate result 
+function generateResult(frequency){
+ if(frequency<=100) return {vin:2,f:frequency,a:2,b:0.2,v:2}
+ if(frequency>100 && frequency<=200) return {vin:2,f:frequency,a:2,b:0.3,v:2}
+ if(frequency>200 && frequency<=400) return {vin:2,f:frequency,a:1.8,b:0.6,v:1.8}
+ if(frequency>400 && frequency<=600) return {vin:2,f:frequency,a:1.6,b:0.5,v:1.6}
+ if(frequency>600 && frequency<=800) return {vin:2,f:frequency,a:1.4,b:0.4,v:1.4}
+ if(frequency>800 && frequency<=1000) return {vin:2,f:frequency,a:1.2,b:0.2,v:1.2}
+}
+// function to map the a,b,Vo value 
+function getRecordValue(){
+ document.getElementById("block-3").style.display = "none" ;
+ document.getElementById("block-4").style.display = "block"; 
+ const tableBody = document.getElementById("table-body")  ;
+ for(let i=100 ;i<=1000;i+=100){
+    let row = document.createElement('tr')
+    let object  = records.get(i)
+    Object.keys(object).forEach(ele=>{
+        let value  = document.createElement('td');
+        value.textContent = object[ele]
+        row.appendChild(value)
+    })
+    tableBody.appendChild(row)
+ }
+
+
 }
