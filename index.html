@@ -10,65 +10,76 @@
 </head>
 
 <body>
-    <div class="display-off"  id="block-1">
-    <header>
-        <div class="title-div"></div>
-        <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
-    </header>
+    <div class="display-off" id="block-1">
+        <header>
+            <div class="title-div"></div>
+            <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
+        </header>
         <main class=" main flex-col add-p10">
-        <h4 class="remove-mg add-p10"><span class="header">AIM:</span> To Design and Determination of Transfer function and Frequency response of lag network</h4>
+            <h4 class="remove-mg add-p10"><span class="header">AIM:</span> To Design and Determination of Transfer
+                function and Frequency response of lag network</h4>
 
-        <h4 class="header add-p10 remove-mg">APPARATUS REQUIRED:</h4>
-        <ul class="list-style remove-mg add-p10 ">
-            <li class="list-items">Resistors-10kΩ </li>
-            <li class="list-items">Resistors-20kΩ</li>
-            <li class="list-items">Capacitor- 0.1μF</li>
-            <li class="list-items">Regulated Power Supply</li>
-            <li class="list-items">Function Generator</li>
-        </ul>
-        <button class="button text-style-center ">Start the Experiment</button>
-     </main>
+            <h4 class="header add-p10 remove-mg">APPARATUS REQUIRED:</h4>
+            <ul class="list-style remove-mg add-p10 ">
+                <li class="list-items">Resistors-10kΩ </li>
+                <li class="list-items">Resistors-20kΩ</li>
+                <li class="list-items">Capacitor- 0.1μF</li>
+                <li class="list-items">Regulated Power Supply</li>
+                <li class="list-items">Function Generator</li>
+            </ul>
+            <button class="button text-style-center ">Start the Experiment</button>
+        </main>
     </div>
     <div id="block-2" style="display:none ;">
         <div class="flex-col">
             <h4 class="title text-style-center text-style-size add-mg10  add-p10">
-                        QUIZ TIME
+                QUIZ TIME
             </h4>
-            <div class =" continer  flex-col add-p10" id="question-container">
-                  <button class="button text-style-center" type="button" onclick="startQuiz(event)">Start Quiz</button>
-                  <h5 class="text-style-center">Test Your Practical Knowledge</h5>
+            <div class=" continer  flex-col add-p10" id="question-container">
+                <button class="button text-style-center" type="button" onclick="startQuiz(event)">Start Quiz</button>
+                <h5 class="text-style-center">Test Your Practical Knowledge</h5>
             </div>
 
         </div>
     </div>
     <div>
-    <div class="" id="block-3" >
-      
-    <div class="grid-layout" id="circuit-page">
-     <div class="circuit-header">Drag the Apparatus and place it on the canvas</div>
-     <div class="draggable-elements">
-        <img src="./assets/Capacitor (40 x 40).png" alt="" class="draggable" id="cap" draggable="true">
-        <img src="./assets/Function-Gen (40 x 40).png" alt="" class="draggable" id="func-g" draggable="true">
-        <img src="./assets/Resistor 1 (40 x 40).png" alt="" class="draggable" id="res1" draggable="true">
-        <img src="./assets/Resistor 2 (40 x 40).png" alt="" class="draggable" id="res2" draggable="true">
-        <img src="./assets/RPS  (40 x 40).png" alt="" class="draggable" id="rsp" draggable="true">
-     </div>
-     <div class="droppable-elements">
-     <img src="./assets/wire-layout.png" class="layout">
-     <div class="droppable" data-draggable-id="cap" style="position:absolute; bottom:100px;right:210px;"></div>
-     <div class="droppable" data-draggable-id="func-g" style="position:absolute;top:265px;left:25px;"></div>
-     <div class="droppable" data-draggable-id="res1" style="position:absolute;top:15px;left:250px;"></div>
-     <div class="droppable" data-draggable-id="res2" style="position:absolute; top:100px;right:210px;"></div> 
-     <div class="droppable" data-draggable-id="rsp" style="position:absolute;top:120px;left:25px;"></div>
-     <div class="result container" style="position:absolute ;right: 15px;width:130px;height:120px;bottom:175px;">
-        <div class="result-container" id="output-a">a :</div>
-        <div class="result-container" id="output-b">b :</div>
-        <div class="result-container" id="output-v">Vo :</div>
-    </div> 
-    </div>
+        <div class="" id="block-3">
+
+            <div class="grid-layout" id="circuit-page">
+                <div class="circuit-header">Drag the Apparatus and place it on the canvas</div>
+                <div class="draggable-elements">
+                    <img src="./assets/capacitor.png" alt="" height="100" width="90" class="draggable" id="cap"
+                        draggable="true">
+                    <img src="./assets/functiongen.png" alt="" height="100" width="90" class="draggable" id="func-g"
+                        draggable="true">
+                    <img src="./assets/R1.png" alt="" height="100" width="90" class="draggable" id="res1"
+                        draggable="true">
+                    <img src="./assets/r2.png" alt="" height="100" width="90" class="draggable" id="res2"
+                        draggable="true">
+                    <img src="./assets/regulatedpowersupply.png" alt="" height="100" width="90" class="draggable"
+                        id="rsp" draggable="true">
+                </div>
+                <div class="droppable-elements">
+                    <img src="./assets/wire-layout.png" class="layout">
+                    <div class="droppable" data-draggable-id="cap" style="position:absolute; bottom:100px;right:210px;">
+                    </div>
+                    <div class="droppable" data-draggable-id="func-g" style="position:absolute;top:265px;left:25px;">
+                    </div>
+                    <div class="droppable" data-draggable-id="res1" style="position:absolute;top:15px;left:250px;">
+                    </div>
+                    <div class="droppable" data-draggable-id="res2" style="position:absolute; top:100px;right:210px;">
+                    </div>
+                    <div class="droppable" data-draggable-id="rsp" style="position:absolute;top:120px;left:25px;"></div>
+                    <div class="result container"
+                        style="position:absolute ;right: 15px;width:130px;height:120px;bottom:175px;">
+                        <div class="result-container" id="output-a">a :</div>
+                        <div class="result-container" id="output-b">b :</div>
+                        <div class="result-container" id="output-v">Vo :</div>
+                    </div>
+                </div>
 
 
-    <script src="./main.js"></script>
+                <script src="./main.js"></script>
 </body>
 
 </html>
