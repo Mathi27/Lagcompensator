@@ -303,11 +303,18 @@ function generateResult(frequency){
 // function to map the a,b,Vo value 
 function getRecordValue(){
  document.getElementById("block-3").style.display = "none" ;
- document.getElementById("block-4").style.display = "block"; 
+ document.getElementById("block-4").style.display = "block";
+ const graph1 = document.getElementById("graph1");
+ const graph2 = document.getElementById("graph2");
+ let label = []
+ let dataset1 = []
+ let dataset2 = []
  const tableBody = document.getElementById("table-body")  ;
  for(let i=100 ;i<=1000;i+=100){
     let row = document.createElement('tr')
     let object  = records.get(i)
+    label.push(i)
+    dataset1.push((20*Math.log10(object)))
     Object.keys(object).forEach(ele=>{
         let value  = document.createElement('td');
         value.textContent = object[ele]
@@ -317,4 +324,10 @@ function getRecordValue(){
  }
 
 
+}
+//to go to privious
+function gotoprevious(){
+    document.getElementById("block-4").style.display = "none"; 
+    document.getElementById("block-3").style.display = "block" ;
+    
 }

@@ -44,7 +44,7 @@
     </div>
     <div class="" id="block-3" >
 
-            <div class="grid-layout" id="circuit-page" style="display:none;">
+            <div class="grid-layout" id="circuit-page" >
                 <div class="circuit-header" id="header1">Drag the Apparatus and place it on the canvas</div>
                 <div class="input-fields" style="display:none;" id="header2">
                     <span>Set the Voltage and Change the Frequency and Record the value</span>
@@ -99,7 +99,8 @@
                 </div>
             </div>
     </div>
-    <div class="" id="block-4" >
+    <div class="" id="block-4" style="display: none;">
+        <button onclick="gotoprevious()">previous</button>
         <div class="result-grid">
             <div class="table-conatiner">
                 <table>
@@ -125,8 +126,8 @@
                     <span>V<sub>o</sub>  Output Voltage</span>
                 </div>
             </div>
-            <div class="graph1">graph-1</div>
-            <div class="graph2">graph-2</div>
+            <div class="graph1" id="graph1">graph-1</div>
+            <div class="graph2" id="graph2">graph-2</div>
         </div>
     </div>
     
