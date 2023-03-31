@@ -7,6 +7,9 @@ The instructional strategy identified is Expository as the students learn the co
 
 V.P. AswinKumar    
 T.K. Mathi Yuvarajan   
+
+RESEARCH AND DEVELOPMENT | Electrical and Electronics Engineering
+Snega R (KCG College of Technology)
      
 
 #### Software Version 1.0
