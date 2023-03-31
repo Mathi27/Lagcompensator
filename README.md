@@ -9,7 +9,7 @@ V.P. AswinKumar
 T.K. Mathi Yuvarajan   
 
 ## RESEARCH AND DEVELOPMENT | Electrical and Electronics Engineering
-Snega R (KCG College of Technology)
+Snega K (KCG College of Technology)
      
 
 #### Software Version 1.0
