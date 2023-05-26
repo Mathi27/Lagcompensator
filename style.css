@@ -128,9 +128,13 @@ h4 {
 .layout {
     width: 100%;
     height: 100%;
+    min-width:760px;
+    min-height:540px; 
+    max-width: 760px;;
+    max-height: 540px;;
 }
 
-#block-3 {
+#block-4 {
     padding: 10px;
 
 }
@@ -152,6 +156,11 @@ h4 {
     flex-direction: column;
     justify-content: space-evenly;
     padding: 0px 5px;
+    position:absolute ;
+    right: 15px;
+    width:140px;
+    height:160px;
+    bottom:37%;
 }
 
 .result-container {
@@ -216,4 +225,31 @@ h4 {
     grid-template-columns: 1fr 2fr;
     gap: 10px;
     border: 1px solid #000;
+}
+
+#rsps{
+    position: absolute;
+    bottom:45%;
+    left:17%;
+
+}
+#resis1{
+    position: absolute;
+    top: 5%;
+    left: 31.5%;
+}
+#resis2{
+   position: absolute;
+   bottom:20.5%;
+   right: 26%;
+}
+#funcg{
+    position: absolute;
+    bottom:45%;
+
+}
+#caps{
+    position: absolute;
+    right: 26%;
+    top: 23.5%;
 }

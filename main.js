@@ -21,215 +21,120 @@ const quize_question = [
         options: ["Increases", "Settling", "Stabilizes", "Decreases"]
     }
 ]
+
+
+///  staet quize -> 2 questuion(only after correct) -> circuit (correct) -> 2 question -> reading -> 1 question(crt) -> end
 const quize_answer = [3, 3, 3, 0, 2]
 const user_answer = new Array(5)
-const invalid_answer = []
+
 var current_question_index = 0
 const circuitObject = {}
 const records = new Map();
 
-//to move to quize page
-function startTheQuize() {
-    document.getElementById("block-1").classList.add("display-off")
-    document.getElementById("block-2").classList.remove("display-off");
+// //to move to quize page
+function switchDisplay(id1,id2) {
+    document.getElementById(id1).classList.add("display-off")
+    document.getElementById(id2).classList.remove("display-off");
 }
-// the function starts the quize
-function startQuiz(event) {
-    console.log(event)
-    let parent = event.target.parentElement
-    let sibling = event.target.nextElementSibling
-    parent.removeChild(sibling)
-    parent.removeChild(event.target)
-    let nextButton = document.createElement('input')
-    nextButton.type = 'button'
-    nextButton.value = 'next'
-    nextButton.onclick = nextQuestion
-    let prevsButton = document.createElement('input')
-    prevsButton.type = 'button'
-    prevsButton.value = 'prev'
-    prevsButton.onclick = prevsQuestion
-    let btnContainer = document.createElement('div')
-    btnContainer.appendChild(nextButton)
-    btnContainer.appendChild(prevsButton)
-    let questionConatiner = document.createElement('div')
-    questionConatiner.id = 'questionContainer'
-    questionConatiner.appendChild(createQuestion(current_question_index))
-    parent.appendChild(questionConatiner)
-    parent.appendChild(nextButton)
-    parent.appendChild(prevsButton)
-
-
-}
-// this function create a question dom templete based on the index value 
-
-function createQuestion(index) {
-    let containerElement = document.createElement('div')
-    let questionElement = document.createElement('h5')
-    questionElement.innerHTML = `${index + 1})${quize_question[index].question}`
-    let optionElement = document.createElement('div')
-    quize_question[index].options.map((ele, ind) => {
-        let option = document.createElement('input')
-        let label = document.createElement('label')
-        label.htmlFor = ele
-        label.textContent = ele
-        option.type = 'radio'
-        option.value = ind
-        option.name = 'option'
-        option.id = ele
-        if ((user_answer[index] || user_answer[index] == 0) && user_answer[index] == ind) { option.checked = true }
-        optionElement.appendChild(option)
-        optionElement.appendChild(label)
-    })
-    containerElement.appendChild(questionElement)
-    containerElement.appendChild(optionElement)
-    return containerElement
+function startQuiz(event){
+    const questionObj  =  new RenderQuestions([0,1],'block-3','block-4');
+    document.getElementById('btn1').onclick = questionObj.prevQuestion.bind(questionObj)
+    document.getElementById('btn2').onclick = questionObj.nextQuestion.bind(questionObj)
+    document.getElementById('btn3').onclick = questionObj.submit.bind(questionObj)
+    switchDisplay('block-2','block-3')
 }
 
-// to render the next question
-function nextQuestion(event) {
-    document.getElementsByName('option').forEach((ele, index) => {
-        if (ele.checked) user_answer[current_question_index] = index
-    })
-    current_question_index
-    console.log(user_answer)
-    if (current_question_index > 3) { renderResult(event.target.parentElement); return }
-    current_question_index++;
-    let questionConatiner = document.getElementById('questionContainer');
-    questionConatiner.childNodes.forEach(ele => questionConatiner.removeChild(ele))
-    questionConatiner.appendChild(createQuestion(current_question_index));
+class RenderQuestions{
+    constructor(question,currentBlock,nextBlock,callback){
+    this.index = 0
+    this.question = question;
+    this.nextBlock = nextBlock
+    this.currentBlock = currentBlock
+    this.selectedAnswer = {};
+    this.invalid  = []
+    this.callback = callback
+    this.renderQuestions()
+     
 }
-//to render the previous question
-
-
-function prevsQuestion() {
-
-    let questionConatiner = document.getElementById('questionContainer');
-    document.getElementsByName('option').forEach((ele, index) => {
-        if (ele.checked) user_answer[current_question_index] = index
-    })
-    if (current_question_index < 1) return
-    current_question_index--;
-    questionConatiner.childNodes.forEach(ele => questionConatiner.removeChild(ele))
-    questionConatiner.appendChild(createQuestion(current_question_index));
-}
-// to reder the result of the quize
-function renderResult(mainContainer) {
-
-    let parentContainer = mainContainer.parentElement;
-    console.log(parentContainer);
-    let container = document.createElement('div');
-    parentContainer.removeChild(mainContainer)
-
-    const result = calculateResult()
-    let scoreContainer = document.createElement('div')
-    scoreContainer.innerHTML = `Score ${result}/${quize_question.length}`
-    let redirectButton = document.createElement('input')
-    redirectButton.type = 'button'
-    if (result == quize_question.length) {
-        redirectButton.value = 'Next'
-        redirectButton.onclick = renderCircuit
+    renderQuestions(){
+        
+        questionRenderer(this.question[this.index],this.selectedAnswer[this.index])
+        buttonDisplayController(0,this.question.length,this.index)
+        
     }
-    else {
-        redirectButton.value = 'Try Again'
-        redirectButton.onclick = reRenderQuestion
+    nextQuestion(){
+        this.checkAnswer()
+        this.index++;
+        this.renderQuestions()
     }
-    container.appendChild(scoreContainer)
-    container.appendChild(redirectButton)
-    parentContainer.appendChild(container)
+    prevQuestion(){
+        this.checkAnswer()
+        this.index--;
+        this.renderQuestions()
+    
+    }
+    checkAnswer(){
+        const answer  = document.getElementsByName('answer') 
+        answer.forEach( (option,index )=>{
+            if(option.checked) {
+                if(index !== quize_answer[this.question[this.index]]) {
+                    this.invalid.push(this.question[this.index])
+                }
+                this.selectedAnswer[this.index] = index
+               
 
+            }
+        })
+        return false
+        
+    }
+    submit(){
+        this.checkAnswer()
+        if(this.invalid.length === 0) {
+            switchDisplay(this.currentBlock,this.nextBlock);
+            if(this.callback) this.callback() ;
+            return 
+        }
+        else{
+            this.index = 0;
+            this.question = this.invalid
+            this.invalid = []
+            this.renderQuestions()
 
-}
-// to calculate the result of the quize
-function calculateResult() {
-    let score = 0;
-    invalid_answer.splice(0, invalid_answer.length)
-    quize_answer.forEach((ele, ind) => { if (ele == user_answer[ind]) { score++ } else { invalid_answer.push(ind) } })
-    return score
-}
-// to re-render the incurrect question 
-function reRenderQuestion(event) {
-    current_question_index = 0
-    let mainContainer = event.target.parentElement.parentElement
-    mainContainer.removeChild(event.target.parentElement)
-    let parent = document.createElement('div');
-    let nextButton = document.createElement('input')
-    nextButton.type = 'button'
-    nextButton.value = 'next'
-    nextButton.onclick = rnextQuestion
-    let prevsButton = document.createElement('input')
-    prevsButton.type = 'button'
-    prevsButton.value = 'prev'
-    prevsButton.onclick = rprevsQuestion
-    let btnContainer = document.createElement('div')
-    btnContainer.appendChild(nextButton)
-    btnContainer.appendChild(prevsButton)
-    let questionConatiner = document.createElement('div')
-    questionConatiner.id = 'questionContainer'
-    questionConatiner.appendChild(createQuestion(invalid_answer[current_question_index]))
-    parent.appendChild(questionConatiner)
-    parent.appendChild(nextButton)
-    parent.appendChild(prevsButton)
-    mainContainer.appendChild(parent)
-}
-
-// to go to next re-reder question 
-function rnextQuestion(event) {
-    document.getElementsByName('option').forEach((ele, index) => {
-        if (ele.checked) user_answer[invalid_answer[current_question_index]] = index
-    })
-    current_question_index
-
-    if (current_question_index > invalid_answer.length - 2) renderResult(event.target.parentElement)
-    current_question_index++;
-    let questionConatiner = document.getElementById('questionContainer');
-    questionConatiner.childNodes.forEach(ele => questionConatiner.removeChild(ele))
-    questionConatiner.appendChild(createQuestion(invalid_answer[current_question_index]));
-}
-//to go to previous re-render question
-function rprevsQuestion() {
-
-    let questionConatiner = document.getElementById('questionContainer');
-    document.getElementsByName('option').forEach((ele, index) => {
-        if (ele.checked) user_answer[invalid_answer[current_question_index]] = index
-    })
-    if (current_question_index < 1) return
-    current_question_index--;
-    console.log(user_answer)
-    questionConatiner.childNodes.forEach(ele => questionConatiner.removeChild(ele))
-    questionConatiner.appendChild(createQuestion(invalid_answer[current_question_index]));
+        }
+ 
+    }
+    
 }
 
-
-//this is no render the circuit
-function renderCircuit() {
-    document.getElementById("block-2").classList.add("display-off");
-    document.getElementById("block-3").classList.remove("display-off");
+function questionRenderer(questionIndex,exisitingValue){
+    let index = 0;
+    
+    document.getElementById('question').innerHTML = (questionIndex+1).toString() + ") " +quize_question[questionIndex].question
+    document.getElementById('option').childNodes.forEach( element =>{
+        if(element.nodeType === 1){
+            
+            if((exisitingValue || exisitingValue === 0 ) && exisitingValue === index) element.childNodes[0].checked = true
+            element.childNodes[1].data = quize_question[questionIndex].options[index++]
+        }
+   })
+   
+}
+function buttonDisplayController(startRange,endRange,questionIndex) {
+    const btn1  = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const btn3 = document.getElementById('btn3');
+    btn3.disabled = true
+    btn1.disabled = false;
+    btn2.disabled = false;
+    if(questionIndex + 1 >=endRange) {
+        btn2.disabled = true
+        btn3.disabled = false
+    }
+    if(questionIndex - 1 <startRange)  btn1.disabled = true
+    
 }
 
-// this is circute rendering session 
-
-//   function renderCircute(event){
-//     let mainContainer = event.target.parentElement.parentElement.parentElement
-//     mainContainer.style.display = 'none';
-
-//     let elementContainer  = document.getElementById('elementContainer')
-//     //add all he element inside the element container 
-//     for(let i=0;i<6;i++){ 
-//     elementContainer.appendChild(addCircuiteElement("filepath",i,100,100))
-//      }
-
-//     }
-
-//     function addCircuiteElement(imagepath,id,width,height){
-//         let element = document.createElement('img')
-//         element.classList.add('container')
-//         element.src = imagepath 
-//         element.width = width
-//         element.height = height
-//         element.id = id
-//         element.alt = `component - ${id}`
-//         return element 
-//     }
 
 // selecting all the draggable event 
 const draggableElement = document.querySelectorAll(".draggable");
@@ -247,7 +152,7 @@ droppableElement.forEach(ele => {
 
 })
 
-//drag and drop functionality 
+// //drag and drop functionality 
 function dragStart(event) {
     event.dataTransfer.setData("id", event.target.id)
 }
@@ -275,18 +180,32 @@ function drop(event) {
     }
 }
 
-//check connectin function 
+// //check connectin function 
 function checkConnection() {
+    console.log("working")
+    switchDisplay('block-4','block-3')
+    const cb = () =>{
+    document.getElementById("check-connection").style.display = "none"
+
     document.getElementById("header1").style.display = "none";
     const inputField = document.getElementById("header2")
     inputField.classList.add("circuit-header")
     inputField.style.display = "block";
     const draggableContainer = document.getElementById("draggable-elements")
     draggableContainer.style.display = "none";
-    document.getElementById("check-connection").style.display = "none";
     document.getElementById("record-result").style.display = "block";
+
+    }
+    const questionObj  =  new RenderQuestions([2,3],'block-3','block-4',cb);
+    document.getElementById('btn1').onclick = questionObj.prevQuestion.bind(questionObj)
+    document.getElementById('btn2').onclick = questionObj.nextQuestion.bind(questionObj)
+    document.getElementById('btn3').onclick = questionObj.submit.bind(questionObj)
+    questionObj.renderQuestions()
+    
+
+    
 }
-//function to record the result 
+// //function to record the result 
 function frequencyOnChange() {
     const voltage = Number(document.getElementById("voltage").value);
     const frequency = Number(document.getElementById("frequency").value);
@@ -319,10 +238,14 @@ function generateResult(frequency) {
 }
 // function to map the a,b,Vo value 
 function getRecordValue() {
-    document.getElementById("block-3").style.display = "none";
-    document.getElementById("block-4").style.display = "block";
-    const graph1 = document.getElementById("graph1");
-    const graph2 = document.getElementById("graph2");
+    switchDisplay('block-4','block-3');
+    const questionObj  =  new RenderQuestions([4],'block-3','block-5');
+    document.getElementById('btn1').onclick = questionObj.prevQuestion.bind(questionObj)
+    document.getElementById('btn2').onclick = questionObj.nextQuestion.bind(questionObj)
+    document.getElementById('btn3').onclick = questionObj.submit.bind(questionObj)
+    
+    
+    
     let label = []
     let dataset1 = []
     let dataset2 = []
@@ -343,50 +266,45 @@ function getRecordValue() {
     }
 
     console.log(dataset1, dataset2, label)
-    new Chart(graph1, {
-        type: "line",
-        data: {
-            labels: label,
-            datasets: [{
-                label: 'phase/frequency',
-                data: dataset1,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        }
-        // options: {
-        //     responsive: true,
-        //     maintainAspectRatio: false,
-        // }
-    })
-    new Chart(graph2, {
-        type: "line",
-        data: {
-            labels: label,
-            datasets: [{
-                label: 'theta/frequency',
-                data: dataset2,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        }
-        // options: {
-        //     responsive: true,
-        //     maintainAspectRatio: false,
-        // }
-    })
+    // new Chart(graph1, {
+    //     type: "line",
+    //     data: {
+    //         labels: label,
+    //         datasets: [{
+    //             label: 'phase/frequency',
+    //             data: dataset1,
+    //             fill: false,
+    //             borderColor: 'rgb(75, 192, 192)',
+    //             tension: 0.1
+    //         }]
+    //     } 
+    //     // options: {
+    //     //     responsive: true,
+    //     //     maintainAspectRatio: false,
+    //     // }
+    // })
+    // new Chart(graph2, {
+    //     type: "line",
+    //     data: {
+    //         labels: label,
+    //         datasets: [{
+    //             label: 'theta/frequency',
+    //             data: dataset2,
+    //             fill: false,
+    //             borderColor: 'rgb(75, 192, 192)',
+    //             tension: 0.1
+    //         }]
+    //     }
+    //     // options: {
+    //     //     responsive: true,
+    //     //     maintainAspectRatio: false,
+    //     // }
+    // })
 }
-//to go to privious circuit page
-function gotoprevious() {
-    document.getElementById("block-4").classList.add("display-off");
-    document.getElementById("block-3").classList.remove("display-off");
 
-}
-// to download the result as pdf
-function downloadResult() {
-    alert("the expriment completed successfully and the download will begin soon...")
-    const element = document.getElementById('block-4');
-    html2pdf().from(element).save()
-}
+// // to download the result as pdf
+// function downloadResult() {
+//     alert("the expriment completed successfully and the download will begin soon...")
+//     const element = document.getElementById('block-4');
+//     html2pdf().from(element).save()
+// }

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div  id="block-1">
+    <div  id="block-1" >
         <header>
             <div class="title-div"></div>
             <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
@@ -29,7 +29,7 @@
                 <li class="list-items">Regulated Power Supply</li>
                 <li class="list-items">Function Generator</li>
             </ul>
-            <button class="button text-style-center " onclick ="startTheQuize()">Start the Experiment</button>
+            <button class="button text-style-center " onclick ="switchDisplay('block-1','block-2')">Start the Experiment</button>
         </main>
     </div>
     <div id="block-2" class="display-off">
@@ -44,23 +44,31 @@
 
         </div>
     </div>
-    <div  id="block-3" class="display-off">
+    <div id="block-3" class="display-off">
+        <h1>Quize TIME</h1>
+        <div class="question" id="question"> Sample the iiijijijijijijijijijijijijijijijijijijiji question  ?</div>
+        <ul class="option-list" id="option">
+            <li ><input type="radio" name = "answer"> option 1</li>
+            <li><input type="radio" name = "answer"> option 2</li>
+            <li><input type="radio" name = "answer"> option 3</li>
+            <li><input type="radio" name = "answer"> option 4</li>
+        </ul>
+       
+        <ul class="controller">
+            <button class="prev btn" id="btn1"> Previous</button>
+            <button class="next btn" id="btn2"> Next </button>
+            <button class="submit btn" id="btn3"> Submit</button>
+        </ul>
+        
+
+    </div>
+
+
+    <div  id="block-4" class="display-off" >
 
             <div class="grid-layout" id="circuit-page" >
                 <div class="circuit-header" id="header1">Drag the Apparatus and place it on the canvas</div>
-                <div class="input-fields" style="display:none;" id="header2">
-                    <span>Set the Voltage and Change the Frequency and Record the value</span>
-                    <div class="input-elements" id="input-elements">
-                        <div class="input-element">
-                            <label>Voltage:</label>
-                            <input type="number" id="voltage" value="2">
-                        </div>
-                        <div class="input-element">
-                            <label>Frequency:</label>
-                            <input type="range" id="frequency" min="100" max="1000" value="0" step="100" onchange="frequencyOnChange()">
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="draggable-elements" id="draggable-elements">
                     <img src="./assets/capacitor.png" alt="" height="100" width="90" class="draggable" id="cap"
                         draggable="true">
@@ -74,20 +82,19 @@
                         id="rsp" draggable="true">
                 </div>
                 <div class="droppable-elements">
-                    <img src="./assets/wire-layout.png" class="layout">
-                    <div class="droppable" data-draggable-id="cap" style="position:absolute; bottom:100px;right:210px;">
+                    <img src="./assets//background.png" class="layout" >
+                    <div class="droppable" data-draggable-id="cap" id="caps">
                     </div>
-                    <div class="droppable" data-draggable-id="func-g" style="position:absolute;top:265px;left:25px;">
+                    <div class="droppable" data-draggable-id="func-g" id="funcg">
                     </div>
-                    <div class="droppable" data-draggable-id="res1"
-                        style="position:absolute;top:15px;left:240px;width:100px;">
+                    <div class="droppable" data-draggable-id="res1"    id="resis1">
                     </div>
-                    <div class="droppable" data-draggable-id="res2" style="position:absolute; top:100px;right:210px;">
+                    <div class="droppable" data-draggable-id="res2"  id="resis2">
                     </div>
-                    <div class="droppable" data-draggable-id="rsp" style="position:absolute;top:120px;left:25px;"></div>
+                    <div class="droppable" data-draggable-id="rsp"  id="rsps"></div>
                     <div class="result container"
-                        style="position:absolute ;right: 15px;width:130px;height:120px;bottom: 170px;">
-                        <div class="result-container" id="output-a">a :</div>
+                        style=>
+                         <div class="result-container" id="output-a">a :</div>
                         <div class="result-container" id="output-b">b :</div>
                         <div class="result-container" id="output-v">Vo :</div>
                     </div>
@@ -95,13 +102,28 @@
                 <div class="button-holder" id="check-connection">
                     <button disabled="true" id="checkConnection" onclick="checkConnection()">CHECK CONNECTION</button>
                 </div>
+                
                 <div class="button-holder" style="display:none;" id="record-result">
                     <button onclick="recordTheResult()">RECORD</button>
                     <button onclick="getRecordValue()" disabled="true" id="result-btn">RESULT</button>
+                    <div class="input-fields" style="display:none;" id="header2">
+                        <span>Set the Voltage and Change the Frequency and Record the value</span>
+                        <div class="input-elements" id="input-elements">
+                            <div class="input-element">
+                                <label>Voltage:</label>
+                                <input type="number" id="voltage" value="2">
+                            </div>
+                            <div class="input-element">
+                                <label>Frequency:</label>
+                                <input type="range" id="frequency" min="100" max="1000" value="0" step="100" onchange="frequencyOnChange()">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
     </div>
-    <div class="display-off" id="block-4" >
+    <div class="display-off" id="block-5" >
       
         <div class="result-grid">
             <div class="table-conatiner">
@@ -129,8 +151,8 @@
                     <span>V<sub>o</sub></span><span> Output Voltage</span>
                 </div>
             </div>
-            <canvas  class="graph1" id="graph1" ></canvas>
-            <canvas  class="graph2" id="graph2"></canvas>
+            <!-- <canvas  class="graph1" id="graph1" ></canvas>
+            <canvas  class="graph2" id="graph2"></canvas> -->
             <button onclick="gotoprevious()">previous</button>
             <button onclick="downloadResult()">Download the result</button>
         </div>
