@@ -81,6 +81,8 @@ h4 {
 
 .container {
     border: 1px solid #000;
+
+
 }
 
 .flex-row {
@@ -128,10 +130,6 @@ h4 {
 .layout {
     width: 100%;
     height: 100%;
-    min-width:760px;
-    min-height:540px; 
-    max-width: 760px;;
-    max-height: 540px;;
 }
 
 #block-4 {
@@ -146,8 +144,8 @@ h4 {
 
 .droppable {
     border: 2px solid #000;
-    width: 80px;
-    height: 80px;
+    width: 13%;
+    height: 100px;
     background-color: white;
 }
 
@@ -158,9 +156,9 @@ h4 {
     padding: 0px 5px;
     position:absolute ;
     right: 15px;
-    width:140px;
-    height:160px;
-    bottom:37%;
+    width:18%;
+    height:27.5%;
+    bottom:38.5%;
 }
 
 .result-container {
@@ -229,27 +227,27 @@ h4 {
 
 #rsps{
     position: absolute;
-    bottom:45%;
+    bottom:43.5%;
     left:17%;
 
 }
 #resis1{
     position: absolute;
-    top: 5%;
-    left: 31.5%;
+    top: 4.5%;
+    left: 30.5%;
 }
 #resis2{
    position: absolute;
-   bottom:20.5%;
-   right: 26%;
+   bottom:19.5%;
+   right: 25%;
 }
 #funcg{
     position: absolute;
-    bottom:45%;
+    top:38.75%;
 
 }
 #caps{
     position: absolute;
-    right: 26%;
-    top: 23.5%;
+    right: 25%;
+    top: 22.5%;
 }
