@@ -171,12 +171,19 @@
       </div>
 
       <div class="button-holder" style="display: none" id="record-result">
-        <button onclick="recordTheResult()">RECORD</button>
-        <button onclick="getRecordValue()" disabled="true" id="result-btn">
+        
+        <button class="button" onclick="recordTheResult()">RECORD</button>
+        <button
+          class="button"
+          onclick="getRecordValue()"
+          disabled="true"
+          id="result-btn"
+        >
           RESULT
         </button>
+        <div class="add-p10"></div>
         <div class="input-fields" style="display: none" id="header2">
-          <span
+          <span class="circuit-header"
             >Set the Voltage and Change the Frequency and Record the value</span
           >
           <div class="input-elements" id="input-elements">
