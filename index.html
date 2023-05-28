@@ -1,165 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <title>Lag Compensator Simulation</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-</head>
+  </head>
 
-<body>
-    <div  id="block-1" >
-        <header>
-            <div class="title-div"></div>
-            <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
-        </header>
-        <main class=" main flex-col add-p10">
-            <h4 class="remove-mg add-p10"><span class="header">AIM:</span> To Design and Determination of Transfer
-                function and Frequency response of lag network</h4>
-
-            <h4 class="header add-p10 remove-mg">APPARATUS REQUIRED:</h4>
-            <ul class="list-style remove-mg add-p10 ">
-                <li class="list-items">Resistors-10kΩ </li>
-                <li class="list-items">Resistors-20kΩ</li>
-                <li class="list-items">Capacitor- 0.1μF</li>
-                <li class="list-items">Regulated Power Supply</li>
-                <li class="list-items">Function Generator</li>
-            </ul>
-            <button class="button text-style-center " onclick ="switchDisplay('block-1','block-2')">Start the Experiment</button>
+  <body>
+    <div id="block-1">
+      <header>
+        <div class="title-div"></div>
+        <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
+      </header>
+      <div class="center-div">
+        <main class="main flex-col add-p4">
+          <span class="header">AIM:<br /></span>
+          <div class="list-style">
+            <p>
+              To Design and Determination of Transfer function and Frequency
+              response of lag network
+            </p>
+          </div>
+          <div class="add-p10"></div>
+          <p class="header remove-mg">APPARATUS REQUIRED:</p>
+          <ul class="list-style remove-mg add-p10">
+            <li class="list-items">Resistors-10kΩ</li>
+            <li class="list-items">Resistors-20kΩ</li>
+            <li class="list-items">Capacitor- 0.1μF</li>
+            <li class="list-items">Regulated Power Supply</li>
+            <li class="list-items">Function Generator</li>
+          </ul>
+          <div class="add-p10"></div>
+          <button
+            class="button text-style-center"
+            onclick="switchDisplay('block-1','block-2')"
+          >
+            Start the Experiment
+          </button>
         </main>
+      </div>
     </div>
     <div id="block-2" class="display-off">
-        <div class="flex-col">
-            <h4 class="title text-style-center text-style-size add-mg10  add-p10">
-                QUIZ TIME
-            </h4>
-            <div class=" continer  flex-col add-p10" id="question-container">
-                <button class="button text-style-center" type="button" onclick="startQuiz(event)">Start Quiz</button>
-                <h5 class="text-style-center">Test Your Practical Knowledge</h5>
-            </div>
+      <div class="flex-col">
+        <h4 class="title text-style-center text-style-size add-p10">
+          QUIZ TIME
+        </h4>
+        <div class="continer flex-col add-p10" id="question-container">
+          <div class="add-p10"></div>
+          <button
+            class="button text-style-center"
+            type="button"
+            onclick="startQuiz(event)"
+          >
+            Start Quiz
+          </button>
 
+          <div class="add-p10"></div>
+          <h5 class="text-style-center">Test Your Practical Knowledge</h5>
         </div>
+      </div>
     </div>
     <div id="block-3" class="display-off">
-        <h1>Quize TIME</h1>
-        <div class="question" id="question"> Sample the iiijijijijijijijijijijijijijijijijijijiji question  ?</div>
-        <ul class="option-list" id="option">
-            <li ><input type="radio" name = "answer"> option 1</li>
-            <li><input type="radio" name = "answer"> option 2</li>
-            <li><input type="radio" name = "answer"> option 3</li>
-            <li><input type="radio" name = "answer"> option 4</li>
-        </ul>
-       
-        <ul class="controller">
-            <button class="prev btn" id="btn1"> Previous</button>
-            <button class="next btn" id="btn2"> Next </button>
-            <button class="submit btn" id="btn3"> Submit</button>
-        </ul>
-        
-
-    </div>
-
-
-    <div  id="block-4" class="display-off" >
-
-            <div class="grid-layout" id="circuit-page" >
-                <div class="circuit-header" id="header1">Drag the Apparatus and place it on the canvas</div>
-                
-                <div class="draggable-elements" id="draggable-elements">
-                    <img src="./assets/capacitor.png" alt="" height="100" width="90" class="draggable" id="cap"
-                        draggable="true">
-                    <img src="./assets/functiongen.png" alt="" height="100" width="90" class="draggable" id="func-g"
-                        draggable="true">
-                    <img src="./assets/R1.png" alt="" height="100" width="90" class="draggable" id="res1"
-                        draggable="true">
-                    <img src="./assets/r2.png" alt="" height="100" width="90" class="draggable" id="res2"
-                        draggable="true">
-                    <img src="./assets/regulatedpowersupply.png" alt="" height="100" width="90" class="draggable"
-                        id="rsp" draggable="true">
-                </div>
-                <div class="droppable-elements">
-                    <img src="./assets//background.png" class="layout" >
-                    <div class="droppable" data-draggable-id="cap" id="caps">
-                    </div>
-                    <div class="droppable" data-draggable-id="func-g" id="funcg">
-                    </div>
-                    <div class="droppable" data-draggable-id="res1"    id="resis1">
-                    </div>
-                    <div class="droppable" data-draggable-id="res2"  id="resis2">
-                    </div>
-                    <div class="droppable" data-draggable-id="rsp"  id="rsps"></div>
-                    <div class="result container"
-                        style=>
-                         <div class="result-container" id="output-a">a :</div>
-                        <div class="result-container" id="output-b">b :</div>
-                        <div class="result-container" id="output-v">Vo :</div>
-                    </div>
-                </div>
-                <div class="button-holder" id="check-connection">
-                    <button disabled="true" id="checkConnection" onclick="checkConnection()">CHECK CONNECTION</button>
-                </div>
-                
-                <div class="button-holder" style="display:none;" id="record-result">
-                    <button onclick="recordTheResult()">RECORD</button>
-                    <button onclick="getRecordValue()" disabled="true" id="result-btn">RESULT</button>
-                    <div class="input-fields" style="display:none;" id="header2">
-                        <span>Set the Voltage and Change the Frequency and Record the value</span>
-                        <div class="input-elements" id="input-elements">
-                            <div class="input-element">
-                                <label>Voltage:</label>
-                                <input type="number" id="voltage" value="2">
-                            </div>
-                            <div class="input-element">
-                                <label>Frequency:</label>
-                                <input type="range" id="frequency" min="100" max="1000" value="0" step="100" onchange="frequencyOnChange()">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-    </div>
-    <div class="display-off" id="block-5" >
-      
-        <div class="result-grid">
-            <div class="table-conatiner">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>V<sub>in</sub></th> 
-                            <th>F(hz)</th>
-                            <th>a</th>
-                            <th>b</th>
-                            <th>V<sub>o</sub></th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-                        
-                    </tbody>
-                </table>
-            </div>
-            <div class="table-details">Table table-details
-                <div>
-                    <span>V<sub>in</sub></span><span>Input Voltage</span>
-                    <span>a,b  </span><span> value</span>
-                    <span>F </span>
-                    <span>Frequency</span>
-                    <span>V<sub>o</sub></span><span> Output Voltage</span>
-                </div>
-            </div>
-            <!-- <canvas  class="graph1" id="graph1" ></canvas>
-            <canvas  class="graph2" id="graph2"></canvas> -->
-            <button onclick="gotoprevious()">previous</button>
-            <button onclick="downloadResult()">Download the result</button>
+      <h4 class="title text-style-center text-style-size add-p10">QUIZ TIME</h4>
+      <div class="center-question-div">
+        <div class="question" id="question">
+          Sample the iiijijijijijijijijijijijijijijijijijijiji question ?
         </div>
-    </div>
-   
-   
-    <script src="./main.js"></script>
-</body>
 
+        <ul class="option-list list-style" id="option">
+          <li class="answer"><input type="radio" name="answer" /> option 1</li>
+          <li class="answer"><input type="radio" name="answer" /> option 2</li>
+          <li class="answer"><input type="radio" name="answer" /> option 3</li>
+          <li class="answer"><input type="radio" name="answer" /> option 4</li>
+        </ul>
+        <div class="add-p10">
+          <ul class="controller">
+            <button class="prev btn button" id="btn1">Previous</button>
+            <button class="next btn button" id="btn2">Next</button>
+            <button class="submit btn button" id="btn3">Submit</button>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="block-4" class="display-off">
+      <div class="grid-layout" id="circuit-page">
+        <div class="circuit-header" id="header1">
+          Drag the Apparatus and place it on the canvas
+        </div>
+
+        <div class="draggable-elements" id="draggable-elements">
+          <img
+            src="./assets/capacitor.png"
+            alt=""
+            height="100"
+            width="90"
+            class="draggable"
+            id="cap"
+            draggable="true"
+          />
+          <img
+            src="./assets/functiongen.png"
+            alt=""
+            height="100"
+            width="90"
+            class="draggable"
+            id="func-g"
+            draggable="true"
+          />
+          <img
+            src="./assets/R1.png"
+            alt=""
+            height="100"
+            width="90"
+            class="draggable"
+            id="res1"
+            draggable="true"
+          />
+          <img
+            src="./assets/r2.png"
+            alt=""
+            height="100"
+            width="90"
+            class="draggable"
+            id="res2"
+            draggable="true"
+          />
+          <img
+            src="./assets/regulatedpowersupply.png"
+            alt=""
+            height="100"
+            width="90"
+            class="draggable"
+            id="rsp"
+            draggable="true"
+          />
+        </div>
+        <div class="droppable-elements">
+          <img src="./assets//background.png" class="layout" />
+          <div class="droppable" data-draggable-id="cap" id="caps"></div>
+          <div class="droppable" data-draggable-id="func-g" id="funcg"></div>
+          <div class="droppable" data-draggable-id="res1" id="resis1"></div>
+          <div class="droppable" data-draggable-id="res2" id="resis2"></div>
+          <div class="droppable" data-draggable-id="rsp" id="rsps"></div>
+          <div class="result container" style=>
+          <div class="result-container" id="output-a">a :</div>
+          <div class="result-container" id="output-b">b :</div>
+          <div class="result-container" id="output-v">Vo :</div>
+        </div>
+      </div>
+      <div class="button-holder" id="check-connection">
+        <button
+          class="button"
+          disabled="true"
+          id="checkConnection"
+          onclick="checkConnection()"
+        >
+          Check Connection
+        </button>
+      </div>
+
+      <div class="button-holder" style="display: none" id="record-result">
+        <button onclick="recordTheResult()">RECORD</button>
+        <button onclick="getRecordValue()" disabled="true" id="result-btn">
+          RESULT
+        </button>
+        <div class="input-fields" style="display: none" id="header2">
+          <span
+            >Set the Voltage and Change the Frequency and Record the value</span
+          >
+          <div class="input-elements" id="input-elements">
+            <div class="input-element">
+              <label>Voltage:</label>
+              <input type="number" id="voltage" value="2" />
+            </div>
+            <div class="input-element">
+              <label>Frequency:</label>
+              <input
+                type="range"
+                id="frequency"
+                min="100"
+                max="1000"
+                value="0"
+                step="100"
+                onchange="frequencyOnChange()"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="display-off" id="block-5">
+      <div class="result-grid">
+        <div class="table-conatiner">
+          <table>
+            <thead>
+              <tr>
+                <th>V<sub>in</sub></th>
+                <th>F(hz)</th>
+                <th>a</th>
+                <th>b</th>
+                <th>V<sub>o</sub></th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+        <div class="table-details">
+          Table table-details
+          <div>
+            <span>V<sub>in</sub></span
+            ><span>Input Voltage</span> <span>a,b </span><span> value</span>
+            <span>F </span>
+            <span>Frequency</span>
+            <span>V<sub>o</sub></span
+            ><span> Output Voltage</span>
+          </div>
+        </div>
+        <!-- <canvas  class="graph1" id="graph1" ></canvas>
+            <canvas  class="graph2" id="graph2"></canvas> -->
+        <button onclick="gotoprevious()">previous</button>
+        <button onclick="downloadResult()">Download the result</button>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
 </html>
