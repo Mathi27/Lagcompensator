@@ -88,7 +88,7 @@ class RenderQuestions {
         this.selectedAnswer[this.index] = index;
       }
     });
-    if (!this.selectedAnswer[this.index]) {
+    if (   this.selectedAnswer[this.index]!== 0 && !this.selectedAnswer[this.index]) {
       alert("select an option");
       return false;
     }
@@ -231,17 +231,18 @@ function recordTheResult() {
 }
 //function to generate result
 function generateResult(frequency) {
-  if (frequency <= 100) return { vin: 2, f: frequency, a: 2, b: 0.2, v: 2 };
+  if (frequency < 100) return { vin: 2.2, f: frequency, a: 2.1, b: 0.1, v: 2,p:5.465};
+  if(frequency  === 100 ) return { vin: 2.2, f: frequency, a: 2.1, b: 0.3, v: 2,p:8.2132};
   if (frequency > 100 && frequency <= 200)
-    return { vin: 2, f: frequency, a: 2, b: 0.3, v: 2 };
-  if (frequency > 200 && frequency <= 400)
-    return { vin: 2, f: frequency, a: 1.8, b: 0.6, v: 1.8 };
-  if (frequency > 400 && frequency <= 600)
-    return { vin: 2, f: frequency, a: 1.6, b: 0.5, v: 1.6 };
-  if (frequency > 600 && frequency <= 800)
-    return { vin: 2, f: frequency, a: 1.4, b: 0.4, v: 1.4 };
-  if (frequency > 800 && frequency <= 1000)
-    return { vin: 2, f: frequency, a: 1.2, b: 0.2, v: 1.2 };
+    return { vin: 2.2, f: frequency, a: 2, b: 0.3, v: 1.8 ,p:8.6269};
+    if(frequency >200 && frequency<=300) return { vin: 2.2, f: frequency, a: 1.8, b: 0.6, v: 1.8,p:19.471 };
+  if(frequency>300 && frequency<=400) return { vin: 2.2, f: frequency, a: 1.6, b: 0.6, v: 1.6,p:22.02 };
+  if(frequency>400 && frequency<=500) return { vin: 2.2, f: frequency, a: 1.5, b: 0.5, v: 1.4,p:19.471 };
+  if(frequency>500 && frequency<=600) return { vin: 2.2, f: frequency, a: 1.4, b: 0.4, v: 1.2 ,p:16.6015};
+  if(frequency>600 && frequency<=700) return { vin: 2.2, f: frequency, a: 1.2, b: 0.4, v: 1.2, p:11.536};
+  if(frequency>700 && frequency<=800) return { vin: 2.2, f: frequency, a: 1.0, b: 0.2, v: 1.0  ,p:11.536};
+  if(frequency>800 && frequency<=900) return { vin: 2.2, f: frequency, a: 0.8, b: 0.2, v: 0.8  ,p:11.536};
+  if(frequency>900 && frequency<=1200) return { vin: 2.2, f: frequency, a: 0.6, b: 0.2, v: 0.6  ,p:11.536};
 }
 // function to map the a,b,Vo value
 function getRecordValue() {

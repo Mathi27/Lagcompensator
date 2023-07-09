@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <div id="block-1">
+    <div id="block-1" >
       <header>
         <div class="title-div"></div>
         <h1 class="title text-style-center text-style-size">Lag Compensator</h1>
@@ -207,11 +207,12 @@
         </div>
       </div>
     </div>
-
-    <div class="display-off" id="block-5">
+    </div>
+    <div  id="block-5" class="display-off">
       <div class="result-grid">
-        <div class="table-conatiner">
-          <table>
+        
+          <table class="content-table">
+            
             <thead>
               <tr>
                 <th>V<sub>in</sub></th>
@@ -219,11 +220,12 @@
                 <th>a</th>
                 <th>b</th>
                 <th>V<sub>o</sub></th>
+                <th>P=sin<sup>-1</sup>a/b</th>
               </tr>
             </thead>
             <tbody id="table-body"></tbody>
           </table>
-        </div>
+        
         <div class="table-details">
           Table table-details
           <div>
@@ -237,8 +239,23 @@
         </div>
         <!-- <canvas  class="graph1" id="graph1" ></canvas>
             <canvas  class="graph2" id="graph2"></canvas> -->
-        <button onclick="gotoprevious()">previous</button>
-        <button onclick="downloadResult()">Download the result</button>
+        
+        
+      </div>
+      <div class="center-button botton-holder">
+
+        <button class="button" onclick="switchDisplay('block-5','block-6')">View the Graph</button>
+      </div>
+    </div>
+  
+    <div  class="display-off" id="block-6">
+      <div class="flex-col just-cen align-cen">
+        <h2>The Result Graph</h2>
+        <img src="./assets/WhatsApp Image 2023-07-08 at 10.44.40 AM.jpeg">
+         <div class="botton-holder">
+           <button class="button" onclick="switchDisplay('block-6','block-1')"> Experiment Compeleted</button>
+         </div>
+
       </div>
     </div>
 
